@@ -8,12 +8,6 @@ export default (client: Client): void => {
 
   server.set('trust proxy', '127.0.0.1');
 
-  server.get('/test', function(req, res){
-  const ip = req.ip;
-
-    res.json({"ip": ip, "protocol": req.protocol, "headers": req.headers['x-forwarded-for']});
-  });
-
   server.use('*', express.static(path.join(__dirname, 'static')))
 
   server.listen(3001, () => {
