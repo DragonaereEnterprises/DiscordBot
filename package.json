@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "cd lavalink && pm2 start --name Lavalink java -- -jar Lavalink.jar",
     "start": "ts-node index.tsx | pino-pretty -i pid,hostname",
-    "start-prod": "screen -dmS DragonaereDiscordBot bash -c 'ts-node index.tsx | pino-pretty -i pid,hostname",
+    "start-prod": "screen -dmS DragonaereDiscordBot bash -c 'ts-node index.tsx | pino-pretty -i pid,hostname'",
     "stop-lavalink": "pm2 kill"
   },
   "keywords": [],
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.0",
+    "cors": "^2.8.5",
     "discord.js": "~14.14.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
@@ -26,6 +27,7 @@
     "tsx": "^3.14.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/ms": "^0.7.34",
     "@types/node": "^20.11.0",

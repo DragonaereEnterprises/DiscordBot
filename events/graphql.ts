@@ -1,8 +1,13 @@
 import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import express from 'express';
+import http from 'http';
 import { Client } from 'discord.js';
 import { LavalinkManager } from 'lavalink-client/dist/types';
 import logger from '../logger';
+import cors from 'cors';
 
 function sleep(ms: number | undefined) {
   return new Promise((resolve) => {
@@ -11,6 +16,9 @@ function sleep(ms: number | undefined) {
 }
 
 export default async (client: Client, lavalink: LavalinkManager): Promise<void> => {
+  const app = express();
+  const httpServer = http.createServer(app);
+  
   await sleep(3000);
   const typeDefs = `#graphql
     type BotStats {
@@ -43,11 +51,19 @@ export default async (client: Client, lavalink: LavalinkManager): Promise<void> 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: true
-  });
-  const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+    plugins: [ApolloServerPluginLandingPageDisabled(),ApolloServerPluginDrainHttpServer({ httpServer })]
   });
 
-  logger.info(`GraphQL Server ready at: ${url}`);
+  await server.start();
+
+  app.use(
+    '/graphql',
+    cors<cors.CorsRequest>({ origin: ['https://discordbotapi.dragonaere.com','https://bot.dragonaere.com/', 'https://studio.apollographql.com'] }),
+    express.json(),
+    expressMiddleware(server),
+  );
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+
+  logger.info(`GraphQL Server Ready`);
 };
