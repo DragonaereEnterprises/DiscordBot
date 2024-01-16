@@ -4,6 +4,6 @@ node_modules
 pnpm-lock.yaml
 firebase.json
 1DEPLOYED
-lavalink/logs/
 lavalink/plugins/
 lavalink/Lavalink.jar
+logs

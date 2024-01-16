@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import { Commands } from "../Commands";
+import logger from '../logger';
 import { LavalinkManager } from "lavalink-client/dist/types";
 
 export default (client: Client, lavalink: LavalinkManager): void => {
@@ -10,7 +11,7 @@ export default (client: Client, lavalink: LavalinkManager): void => {
         
         await client.application.commands.set(Commands);
 
-        console.log(`${client.user.username} is online`);
+        logger.info(`${client.user.username} is online`);
 
         const serverCount = Number.parseFloat(String(client.guilds.cache.size)).toLocaleString("en-US");
         const channelCount = Number.parseFloat(String(client.channels.cache.size)).toLocaleString("en-US");
@@ -27,6 +28,6 @@ export default (client: Client, lavalink: LavalinkManager): void => {
           client.user?.setActivity(status.name, { type: status.type });
         }, 60000);
 
-        await lavalink.init({ ...client.user! }); 
+        await lavalink.init({ ...client.user! });
     });
 };

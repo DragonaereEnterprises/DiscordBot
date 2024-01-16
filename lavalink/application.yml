@@ -73,7 +73,7 @@ sentry:
 
 logging:
   file:
-    path: ./logs/
+    path: ../logs/
 
   level:
     root: INFO

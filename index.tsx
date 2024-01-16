@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, Options  } from 'discord.js';
 import { LavalinkManager } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord"
 
@@ -9,14 +9,27 @@ import ready from "./events/ready";
 import interactionCreate from "./events/interactionCreate";
 import { BotClient } from './types';
 import { loadLavalinkEvents } from './lavaklinkEvents';
-import api from './api';
+import graphql from './events/graphql';
 
-const client = new Client({ intents: [
-  GatewayIntentBits.Guilds,
-  GatewayIntentBits.GuildVoiceStates,
-  GatewayIntentBits.GuildMessages,
-  GatewayIntentBits.MessageContent
-] }) as BotClient;
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+  sweepers: {
+		...Options.DefaultSweeperSettings,
+		users: {
+			interval: 3_600,
+			filter: () => user => user.bot && user.id !== user.client.user.id,
+		},
+	},
+	makeCache: Options.cacheWithLimits({
+		...Options.DefaultMakeCacheSettings,
+		ReactionManager: 0,
+	}),
+}) as BotClient;
 
 const lavalink = new LavalinkManager({
   nodes: [
@@ -47,7 +60,7 @@ const reacord = new ReacordDiscordJs(client)
 ready(client, lavalink);
 interactionCreate(client, reacord, lavalink);
 loadLavalinkEvents(client, reacord, lavalink);
-api(client);
+graphql(client, lavalink);
 
 client.on("raw", d => lavalink.sendRawData(d));
 
