@@ -57,7 +57,7 @@ export default async (client: Client, lavalink: LavalinkManager): Promise<void> 
   await server.start();
 
   app.use(
-    '/graphql',
+    '/',
     cors<cors.CorsRequest>({ origin: ['https://discordbotapi.dragonaere.com','https://bot.dragonaere.com/', 'https://studio.apollographql.com'] }),
     express.json(),
     expressMiddleware(server),

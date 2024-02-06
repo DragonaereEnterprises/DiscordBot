@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@andrewdragon/utils": "^0.0.2",
     "@apollo/server": "^4.10.0",
     "cors": "^2.8.5",
     "discord.js": "~14.14.1",

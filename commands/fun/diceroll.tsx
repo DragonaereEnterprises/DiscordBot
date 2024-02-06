@@ -4,6 +4,8 @@ import { ReacordDiscordJs } from "reacord";
 import { EmbedMessage } from "../../components/Embed";
 import React from "react";
 
+import { randomNumber } from "@andrewdragon/utils";
+
 export const DiceRoll: Command = {
   adminOnly: false,
   ownerOnly: false,
@@ -11,10 +13,6 @@ export const DiceRoll: Command = {
   name: 'diceroll',
   description: 'Roll a Die',
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
-    function generateResponse() {
-      let numberReturned = Math.floor(Math.random() * 6) + 1;
-      return numberReturned;
-    }
-    reacord.reply(interaction, <EmbedMessage title="Dice Roll" description={`${generateResponse()}`} />);
+    reacord.reply(interaction, <EmbedMessage title="Dice Roll" description={`${randomNumber(1, 6)}`} />);
   },
 };
