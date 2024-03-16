@@ -33,7 +33,7 @@ export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavali
     const channel = client.channels.cache.get(player.textChannelId!) as TextChannel;
     const url = track.info.artworkUrl || track.pluginInfo?.artworkUrl as string
     if(!channel) return;
-    reacord.send(channel.id, <EmbedMessage 
+    reacord.createChannelMessage(channel.id).render(<EmbedMessage 
       title={`${track.info.title}`.substring(0, 256)} 
       url={track.info.uri}
       thumbnail={{url} || undefined}
@@ -58,7 +58,7 @@ export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavali
     logger.info(player.guildId, " :: No more tracks in the queue, after playing :: ", track.info.title)
     const channel = client.channels.cache.get(player.textChannelId!) as TextChannel;
     if(!channel) return;
-    reacord.send(channel.id, <EmbedMessage title="Queue Ended" />)
+    reacord.createChannelMessage(channel.id).render(<EmbedMessage title="Queue Ended" />)
   }).on("playerUpdate", (player) => {
     // use this event to udpate the player in the your cache if you want to save the player's data(s) externally!
   });
