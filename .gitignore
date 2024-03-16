@@ -2,8 +2,6 @@ node_modules
 .env
 .env.*
 pnpm-lock.yaml
-firebase.json
-1DEPLOYED
 lavalink/plugins/
 lavalink/Lavalink.jar
 logs

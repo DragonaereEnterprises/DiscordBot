@@ -19,6 +19,8 @@
     "@andrewdragon/utils": "^1.0.0",
     "@apollo/server": "^4.10.1",
     "@sentry/cli": "^2.30.2",
+    "@sentry/node": "^7.107.0",
+    "@sentry/profiling-node": "^7.107.0",
     "cors": "^2.8.5",
     "discord.js": "~14.14.1",
     "dotenv": "^16.4.5",

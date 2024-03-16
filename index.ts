@@ -11,6 +11,18 @@ import { BotClient } from './types';
 import { loadLavalinkEvents } from './lavaklinkEvents';
 import graphql from './events/graphql';
 
+import Sentry from "@sentry/node";
+import { nodeProfilingIntegration } from "@sentry/profiling-node";
+
+Sentry.init({
+  dsn: "https://f0384b2662b76db0e37d346548a82e2e@o4506921730244608.ingest.us.sentry.io/4506921738240000",
+  integrations: [
+    nodeProfilingIntegration(),
+  ],
+  tracesSampleRate: 1.0,
+  profilesSampleRate: 1.0,
+});
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
