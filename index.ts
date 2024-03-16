@@ -11,7 +11,7 @@ import { BotClient } from './types';
 import { loadLavalinkEvents } from './lavaklinkEvents';
 import graphql from './events/graphql';
 
-import Sentry from "@sentry/node";
+import * as Sentry from "@sentry/node";
 import { nodeProfilingIntegration } from "@sentry/profiling-node";
 
 Sentry.init({
