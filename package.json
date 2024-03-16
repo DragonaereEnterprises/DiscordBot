@@ -7,9 +7,10 @@
     "prestart": "cd lavalink && pm2 start --name Lavalink java -- -jar Lavalink.jar",
     "start": "screen -dmS DragonaereDiscordBot bash -c 'node build/index.js | pino-pretty -i pid,hostname'",
     "start-dev": "node build/index.js | pino-pretty -i pid,hostname",
-    "build": "tsc",
+    "build": "tsc && pnpm sentry:sourcemaps",
     "stop-lavalink": "pm2 kill",
-    "dev": "tsx watch index.ts"
+    "dev": "tsx watch index.ts",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org dragonaereenterprises --project discord ./build && sentry-cli sourcemaps upload --org dragonaereenterprises --project discord ./build"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
   "dependencies": {
     "@andrewdragon/utils": "^1.0.0",
     "@apollo/server": "^4.10.1",
+    "@sentry/cli": "^2.30.2",
     "cors": "^2.8.5",
     "discord.js": "~14.14.1",
     "dotenv": "^16.4.5",
