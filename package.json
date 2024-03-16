@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prestart": "cd lavalink && pm2 start --name Lavalink java -- -jar Lavalink.jar",
-    "start": "ts-node index.tsx | pino-pretty -i pid,hostname",
-    "start-prod": "screen -dmS DragonaereDiscordBot bash -c 'ts-node index.tsx | pino-pretty -i pid,hostname'",
-    "stop-lavalink": "pm2 kill"
+    "start": "screen -dmS DragonaereDiscordBot bash -c 'node build/index.js | pino-pretty -i pid,hostname'",
+    "start-dev": "node build/index.js | pino-pretty -i pid,hostname",
+    "build": "tsc",
+    "stop-lavalink": "pm2 kill",
+    "dev": "tsx watch index.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "express": "^4.18.3",
     "graphql": "^16.8.1",
     "lavalink-client": "^2.1.4",
+    "ms": "^2.1.3",
     "pino": "^8.19.0",
     "pino-pretty": "^10.3.1",
     "reacord": "^0.6.0",
@@ -32,6 +35,9 @@
     "@types/ms": "^0.7.34",
     "@types/node": "^20.11.28",
     "@types/react": "^18.2.66",
-    "eslint": "^8.57.0"
+    "eslint": "^8.57.0",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
   }
 }
