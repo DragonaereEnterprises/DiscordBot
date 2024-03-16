@@ -26,7 +26,7 @@ export const Purge: Command = {
     if (!interaction.isChatInputCommand()) return
     const amount = interaction.options.getInteger('number', true)
     if (amount > 100) 
-      return reacord.ephemeralReply(interaction, <EmbedError description="You can only purge 100 messages at a time." />);
+      return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="You can only purge 100 messages at a time." />);
     const messages = await channel.messages.fetch({ 
         limit: amount + 1,
     });
@@ -34,8 +34,8 @@ export const Purge: Command = {
       (msg) => Date.now() - msg.createdTimestamp < ms("14 days")
     );
     if (filtered === undefined)
-      return reacord.ephemeralReply(interaction, <EmbedDefaultError />);
-    reacord.ephemeralReply(interaction, <EmbedMessage title="Purge" description={`Purged ${filtered.size - 1} messages.`} />);
+      return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedDefaultError />);
+    reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedMessage title="Purge" description={`Purged ${filtered.size - 1} messages.`} />);
     await channel.bulkDelete(filtered);
   },
 };

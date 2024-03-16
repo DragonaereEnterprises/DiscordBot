@@ -23,23 +23,23 @@ export const Skip: Command = {
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
-    if(!vcId) return reacord.ephemeralReply(interaction, <EmbedError description="Join a voice chat" />);
+    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
     
     const player = lavalink.getPlayer(interaction.guildId);
-    if(!player) return reacord.ephemeralReply(interaction, <EmbedError description="I'm not connected" />);
+    if(!player) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not connected" />);
     
-    if(player.voiceChannelId !== vcId) return reacord.ephemeralReply(interaction, <EmbedError description="We need to be in the same Voice Channel" />);
+    if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same Voice Channel" />);
     
-    if(!player.queue.current) return reacord.reply(interaction, <EmbedMessage description="I'm not playing anything" /> );
+    if(!player.queue.current) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="I'm not playing anything" /> );
     
     const current = player.queue.current;
     const nextTrack = player.queue.tracks[0];
     
-    if(!nextTrack) return reacord.reply(interaction, <EmbedMessage description="No Tracks to skip to" />);
+    if(!nextTrack) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="No Tracks to skip to" />);
 
     await player.skip((interaction.options as CommandInteractionOptionResolver).getInteger("skipto") || 0);
 
-    reacord.reply(interaction, <EmbedMessage description={current ? 
+    reacord.createInteractionReply(interaction).render(<EmbedMessage description={current ? 
         `Skipped [\`${current?.info.title}\`](<${current?.info.uri}>) -> [\`${nextTrack?.info.title}\`](<${nextTrack?.info.uri}>)` :
         `Skipped to [\`${nextTrack?.info.title}\`](<${nextTrack?.info.uri}>)`} /> );
   }

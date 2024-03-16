@@ -4,11 +4,10 @@ import { ReacordDiscordJs, Embed, Button } from "reacord";
 import React from "react";
 
 function HelpEmbed(){
-
 	return (
 		<Embed
 			title="Help"
-			description="Stop it. Get some help."
+			description="Stop it. Get some help. Coming soon!"
 			color={0xf46904}
 			timestamp={Date.now()}
 		/>
@@ -22,6 +21,6 @@ export const Help: Command = {
   name: 'help',
   description: 'Stop it. Get some help.',
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
-    reacord.reply(interaction, <HelpEmbed />)
+    reacord.createInteractionReply(interaction).render(<HelpEmbed />)
   },
 };

@@ -32,14 +32,14 @@ export const Equalizer: Command = {
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     if(!interaction.guildId) return;
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
-    if(!vcId) return reacord.ephemeralReply(interaction, <EmbedError description="Join a voice chat" />);
+    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(EmbedError description="Join a voice chat" />);
 
     const player = lavalink.getPlayer(interaction.guildId);
-    if(!player) return reacord.ephemeralReply(interaction, <EmbedError description="I'm not connected" />);
+    if(!player) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not connected" />);
 
-    if(player.voiceChannelId !== vcId) return reacord.ephemeralReply(interaction, <EmbedError description="We need to be in the same Voice Channel" />);
+    if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same Voice Channel" />);
     
-    if(!player.queue.current) return reacord.reply(interaction, <EmbedMessage description="I'm not playing anything" /> );
+    if(!player.queue.current) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="I'm not playing anything" /> );
 
     let string = "";
     switch((interaction.options as CommandInteractionOptionResolver).getString("equalizer")) {
@@ -52,6 +52,6 @@ export const Equalizer: Command = {
       case "pop": await player.filterManager.setEQ(EQList.Pop); string = "Applied the 'Pop' Equalizer"; break;
       case "electronic": await player.filterManager.setEQ(EQList.Electronic); string = "Applied the 'Electronic' Equalizer"; break;
     }
-    reacord.reply(interaction, <EmbedMessage title={string} />);
+    reacord.createInteractionReply(interaction).render(<EmbedMessage title={string} />);
   }
 }

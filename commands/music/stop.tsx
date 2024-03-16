@@ -15,17 +15,17 @@ export const Stop: Command = {
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
-    if(!vcId) return reacord.ephemeralReply(interaction, <EmbedError description="Join a voice chat" />);
+    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
     
     const player = lavalink.getPlayer(interaction.guildId);
-    if(!player) return reacord.ephemeralReply(interaction, <EmbedError description="I'm not connected" />);
+    if(!player) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not connected" />);
 
-    if(player.voiceChannelId !== vcId) return reacord.ephemeralReply(interaction, <EmbedError description="We need to be in the same Voice Channel" />);
+    if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same Voice Channel" />);
     
-    if(!player.queue.current) return reacord.reply(interaction, <EmbedMessage description="I'm not playing anything" /> );
+    if(!player.queue.current) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="I'm not playing anything" /> );
     
     await player.destroy(`${interaction.user.username} stopped the Player`);
     
-    reacord.reply(interaction, <EmbedMessage title="Stopped the player" /> );
+    reacord.createInteractionReply(interaction).render(<EmbedMessage title="Stopped the player" /> );
   },
 };

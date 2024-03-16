@@ -20,6 +20,6 @@ export const CoinFlip: Command = {
         return 'Tails'
       }
     }
-    reacord.reply(interaction, <EmbedMessage title="Coin Flip" description={`${generateResponse()}`} />);
+    reacord.createInteractionReply(interaction).render(<EmbedMessage title="Coin Flip" description={`${generateResponse()}`} />);
   }
 };

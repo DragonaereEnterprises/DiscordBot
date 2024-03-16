@@ -13,6 +13,6 @@ export const DiceRoll: Command = {
   name: 'diceroll',
   description: 'Roll a Die',
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
-    reacord.reply(interaction, <EmbedMessage title="Dice Roll" description={`${randomNumber(1, 6)}`} />);
+    reacord.createInteractionReply(interaction).render(<EmbedMessage title="Dice Roll" description={`${randomNumber(1, 6)}`} />);
   },
 };

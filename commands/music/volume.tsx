@@ -29,14 +29,14 @@ export const Volume: Command = {
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
-    if(!vcId) return reacord.ephemeralReply(interaction, <EmbedError description="Join a voice chat" />);
+    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
 
     const player = lavalink.getPlayer(interaction.guildId);
-    if(!player) return reacord.ephemeralReply(interaction, <EmbedError description="I'm not connected" />);
+    if(!player) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not connected" />);
 
-    if(player.voiceChannelId !== vcId) return reacord.ephemeralReply(interaction, <EmbedError description="We need to be in the same Voice Channel" />);
+    if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same Voice Channel" />);
 
-    if(!player.queue.current) return interaction.reply({ ephemeral: true, content: "I'm not playing anything" });
+    if(!player.queue.current) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not playing anything" />);
 
     const newVolume = ((interaction.options as CommandInteractionOptionResolver).getNumber("percentage") as number) * .7; // I do this because I feel the default volume is way to loud
     const ignoreDecrementer = ((interaction.options as CommandInteractionOptionResolver).getBoolean("ignoredecrementer") as boolean) === true

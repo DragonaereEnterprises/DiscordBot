@@ -35,14 +35,14 @@ export const Filters: Command = {
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
-    if(!vcId) return reacord.ephemeralReply(interaction, <EmbedError description="Join a voice chat" />);
+    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
 
     const player = lavalink.getPlayer(interaction.guildId);
-    if(!player) return reacord.ephemeralReply(interaction, <EmbedError description="I'm not connected" />);
+    if(!player) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not connected" />);
 
-    if(player.voiceChannelId !== vcId) return reacord.ephemeralReply(interaction, <EmbedError description="We need to be in the same Voice Channel" />);
+    if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same Voice Channel" />);
     
-    if(!player.queue.current) return reacord.reply(interaction, <EmbedMessage description="I'm not playing anything" /> );
+    if(!player.queue.current) return reacord.createInteractionReply(interaction, { ephemeral: true}).render(<EmbedMessage description="I'm not playing anything" /> );
 
     let string = "";
     switch((interaction.options as CommandInteractionOptionResolver).getString("filter")) {
@@ -60,6 +60,6 @@ export const Filters: Command = {
       // case "lowPass": await player.filterManager.lavalinkLavaDspxPlugin.toggleLowPass(); string = player.filterManager.filters.lavalinkLavaDspxPlugin.lowPass ? "Applied LowPass Filter-Effect" : "Disabled LowPass Filter-Effect"; break;
       // case "normalization": await player.filterManager.lavalinkLavaDspxPlugin.toggleNormalization(); string = player.filterManager.filters.lavalinkLavaDspxPlugin.normalization ? "Applied Normalization Filter-Effect" : "Disabled Normalization Filter-Effect"; break;
     }
-    reacord.reply(interaction, <EmbedMessage title={string} />);
+    reacord.createInteractionReply(interaction).render(<EmbedMessage title={string} />);
   }
 }
