@@ -32,7 +32,7 @@ export const Equalizer: Command = {
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     if(!interaction.guildId) return;
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
-    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(EmbedError description="Join a voice chat" />);
+    if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
 
     const player = lavalink.getPlayer(interaction.guildId);
     if(!player) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not connected" />);
