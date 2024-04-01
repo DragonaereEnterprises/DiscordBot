@@ -8,6 +8,11 @@ function HelpEmbed(){
 		<Embed
 			title="Help"
 			description="Stop it. Get some help. Coming soon!"
+      image={
+        {
+          url: "https://c.tenor.com/mZZoOtDcouoAAAAC/tenor.gif",
+        }
+      }
 			color={0xf46904}
 			timestamp={Date.now()}
 		/>

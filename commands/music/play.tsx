@@ -28,7 +28,6 @@ export const Play: Command = {
     const vc = (interaction.member as GuildMember)?.voice?.channel as VoiceChannel;
     if(!vc.joinable || !vc.speakable) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I am not allowed to speak in this channel" />);
     
-    const src = "youtube";
     const query = (interaction.options as CommandInteractionOptionResolver).getString("query") as string;
     
     if(query === "nothing_found") return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="No tracks found" />);
@@ -50,7 +49,7 @@ export const Play: Command = {
 
     if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same voice chat" />);
     
-    const response = (await player.search({ query: query, source: src }, interaction.user)) as SearchResult;
+    const response = (await player.search({ query: query }, interaction.user)) as SearchResult;
     if(!response || !response.tracks?.length) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="No tracks found" />);
 
     await player.queue.add(response.loadType === "playlist" ? response.tracks : response.tracks[0]);
