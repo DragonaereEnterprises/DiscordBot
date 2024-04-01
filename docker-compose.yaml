@@ -38,6 +38,8 @@ services:
     env_file: stack.env
     networks:
       - discordbot
+    ports:
+      - 4000:4000
     depends_on:
       lavalink:
         condition: service_started
