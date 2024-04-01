@@ -10,8 +10,8 @@ COPY . .
 
 RUN mkdir ./logs/
 
-RUN npm install
-RUN npm build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store NODE_ENV=development pnpm install
+RUN pnpm build
 
 EXPOSE 4000
 CMD ["node", "build/index.js"]
