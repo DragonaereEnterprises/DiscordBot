@@ -46,26 +46,27 @@ const client = new Client({
 const lavalink = new LavalinkManager({
   nodes: [
     {
-      host: "localhost",
+      host: process.env.LAVALINK_HOST as string,
       port: 2333,
       authorization: "youshallnotpass"
     }
   ],
-  sendToShard: (guildId, payload) =>
-    client.guilds.cache.get(guildId)?.shard?.send(payload),
+  sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
   client: {
-      id: process.env.DISCORD_CLIENT_ID as string,
-      username: "Dragonaere"
+      id: process.env.DISCORD_CLIENT_ID as string
   },
   playerOptions: {
     onEmptyQueue: {
       destroyAfterMs: 30_000, 
-    }
+    },
+    volumeDecrementer: 0.75,
+    defaultSearchPlatform: "ytmsearch",
+    useUnresolvedData: true,
   },
   queueOptions: {
       maxPreviousTracks: 10
   },
-});
+}) as LavalinkManager;
 
 const reacord = new ReacordDiscordJs(client)
 

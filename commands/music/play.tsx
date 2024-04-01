@@ -40,7 +40,6 @@ export const Play: Command = {
       textChannelId: interaction.channelId,
       selfDeaf: true,
       selfMute: false,
-      volume: 70,
       instaUpdateFiltersFix: true,
       applyVolumeAsFilter: false,
     });
@@ -60,6 +59,6 @@ export const Play: Command = {
     ? `Added ${response.tracks.length} Tracks${response.playlist?.title ? ` - from the ${response.pluginInfo.type || "Playlist"} ${response.playlist.uri ? `[\`${response.playlist.title}\`](<${response.playlist.uri}>)` : `\`${response.playlist.title}\``}` : ""} at \`#${player.queue.tracks.length - response.tracks.length}\``
     : `Added [\`${response.tracks[0].info.title}\`](<${response.tracks[0].info.uri}>) by \`${response.tracks[0].info.author}\` at \`#${player.queue.tracks.length}\``} />);
 
-    if(!player.playing) await player.play(connected ? { volume: 70, paused: false } : undefined);
+    if(!player.playing) await player.play(connected ? { paused: false } : undefined);
   }
 }

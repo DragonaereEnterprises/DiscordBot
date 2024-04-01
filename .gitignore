@@ -2,8 +2,7 @@ node_modules
 .env
 .env.*
 pnpm-lock.yaml
-lavalink/plugins/
-lavalink/Lavalink.jar
 logs
 build
 .sentryclirc
+lavalink

@@ -1,0 +1,41 @@
+version: '3'
+services:
+  bot:
+    container_name: bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./.env
+        required: true
+    networks:
+      - discordbot
+    links:
+      - lavalink
+    depends_on:
+      - lavalink
+
+  lavalink:
+    image: ghcr.io/lavalink-devs/lavalink:4-alpine
+    container_name: lavalink
+    restart: unless-stopped
+    environment:
+      # set Java options here
+      - _JAVA_OPTIONS=-Xmx2G
+      # set lavalink server port
+      - SERVER_PORT=2333
+      # set password for lavalink
+      - LAVALINK_SERVER_PASSWORD=youshallnotpass
+    volumes:
+      # mount application.yml from the same directory or use environment variables
+      - ./lavalink/application.yml:/opt/Lavalink/application.yml
+      # persist plugins between restarts, make sure to set the correct permissions (user: 322, group: 322)
+      - ./lavalink/plugins/:/opt/Lavalink/plugins/
+    networks:
+      - discordbot
+    expose:
+      - 2333
+
+networks:
+  discordbot:
+    name: discordbot
