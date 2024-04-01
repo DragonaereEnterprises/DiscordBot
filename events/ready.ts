@@ -12,7 +12,7 @@ export default (client: Client, lavalink: LavalinkManager): void => {
           });
         }
       
-        await sleep(5000);
+        await sleep(10000);
         
         if (!client.user || !client.application) {
             return;
