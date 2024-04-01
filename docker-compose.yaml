@@ -19,9 +19,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    env_file:
-      - path: stack.env
-        required: false
+    env_file: stack.env
     networks:
       - discordbot
     depends_on:
