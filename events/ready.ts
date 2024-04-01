@@ -5,6 +5,15 @@ import { LavalinkManager } from "lavalink-client/dist/types";
 
 export default (client: Client, lavalink: LavalinkManager): void => {
     client.on("ready", async () => {
+
+        function sleep(ms: number | undefined) {
+          return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+          });
+        }
+      
+        await sleep(5000);
+        
         if (!client.user || !client.application) {
             return;
         }

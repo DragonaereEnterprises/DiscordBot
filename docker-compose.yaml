@@ -29,9 +29,6 @@ services:
       - 2333
     ports:
       - 2333:2333
-    healthcheck:
-      test: ["CMD-SHELL", "wget --header='Authorization: youshallnotpass' http://localhost:2333/v4/info"]
-      retries: 1
 
   bot:
     container_name: bot
@@ -43,8 +40,7 @@ services:
       - discordbot
     depends_on:
       lavalink:
-        condition: service_healthy
-        required: false
+        condition: service_started
 
 networks:
   discordbot:
