@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "cd lavalink && pm2 start --name Lavalink java -- -jar Lavalink.jar",
+    "prestart": "pm2 start --name Lavalink java -- -jar Lavalink.jar",
     "start": "screen -dmS DragonaereDiscordBot bash -c 'node build/index.js | pino-pretty -i pid,hostname'",
     "start-dev": "node build/index.js | pino-pretty -i pid,hostname",
     "build": "tsc && pnpm sentry:sourcemaps",

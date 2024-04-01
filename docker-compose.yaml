@@ -4,11 +4,6 @@ services:
     image: ghcr.io/lavalink-devs/lavalink:v4-update-lp-alpine
     container_name: lavalink
     restart: unless-stopped
-    environment:
-      - SERVER_PORT=2333
-      - LAVALINK_SERVER_PASSWORD=youshallnotpass
-      - METRICS_PROMETHEUS_ENABLED=true
-      - METRICS_PROMETHEUS_ENDPOINT=/metrics
     volumes:
       - ./lavalink/application.yml:/opt/Lavalink/application.yml
       - ./lavalink/plugins/:/opt/Lavalink/plugins/
