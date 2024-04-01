@@ -11,7 +11,7 @@ COPY . .
 RUN mkdir ./logs/
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
-RUN pnpm build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm build
 
 EXPOSE 4000
 CMD ["node", "build/index.js"]
