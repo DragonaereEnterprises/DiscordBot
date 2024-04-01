@@ -21,7 +21,9 @@ services:
       dockerfile: Dockerfile
     env_file:
       - path: ./.env.prod
-        required: true
+        required: false
+      - path: stack.env
+        required: false
     networks:
       - discordbot
     depends_on:
