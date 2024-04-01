@@ -14,7 +14,6 @@ RUN mkdir -p /usr/src/bot/logs/
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store NODE_ENV=development pnpm install
 
-
 COPY . /usr/src/bot
 RUN pnpm build
 
