@@ -5,8 +5,8 @@ services:
     container_name: lavalink
     restart: unless-stopped
     volumes:
-      - ./lavalink/application.yml:/opt/Lavalink/application.yml
-      - ./lavalink/plugins/:/opt/Lavalink/plugins/
+      - ./application.yml:/opt/Lavalink/application.yml
+      - ./plugins/:/opt/Lavalink/plugins/
     networks:
       - discordbot
     expose:
