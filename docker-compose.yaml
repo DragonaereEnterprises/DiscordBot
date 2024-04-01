@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: Dockerfile
     env_file:
-      - path: ./.env.prod
+      - path: .env.prod
         required: false
       - path: stack.env
         required: false
