@@ -63,7 +63,7 @@ export default async (client: Client, lavalink: LavalinkManager): Promise<void> 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    //plugins: [ApolloServerPluginLandingPageDisabled(),ApolloServerPluginDrainHttpServer({ httpServer })]
+    plugins: [ApolloServerPluginLandingPageDisabled(),ApolloServerPluginDrainHttpServer({ httpServer })]
   });
 
   await server.start();
