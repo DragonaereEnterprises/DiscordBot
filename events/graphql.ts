@@ -28,8 +28,13 @@ export default async (client: Client, lavalink: LavalinkManager): Promise<void> 
       userCount: String
     }
 
+    type BotGuilds {
+      id: [String]
+    }
+
     type Query {
       botstats: [BotStats]
+      botguilds: [BotGuilds]
     }
   `;
 
@@ -42,16 +47,23 @@ export default async (client: Client, lavalink: LavalinkManager): Promise<void> 
     }
   ];
 
+  const botGuilds = [
+    {
+      id: client.guilds.cache.map((guild) => guild.id),
+    }
+  ];
+
   const resolvers = {
     Query: {
       botstats: () => botStats,
+      botguilds: () => botGuilds,
     },
   };
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginLandingPageDisabled(),ApolloServerPluginDrainHttpServer({ httpServer })]
+    //plugins: [ApolloServerPluginLandingPageDisabled(),ApolloServerPluginDrainHttpServer({ httpServer })]
   });
 
   await server.start();

@@ -1,8 +1,6 @@
 import { Embed } from "reacord"
 import React from "react"
 
-import * as Sentry from "@sentry/node";
-
 export function EmbedMessage({title, description, url, thumbnail, footer}: {title?: string, description?: string, url?: string | undefined, thumbnail?: {url: string} | undefined, footer?: {text: string, iconUrl: string | undefined}| undefined }) {
 	return (
 		<Embed
@@ -18,7 +16,6 @@ export function EmbedMessage({title, description, url, thumbnail, footer}: {titl
 }
 
 export function EmbedError({title = "error", description}: any) {
-  Sentry.captureException(description);
 	return (
 		<Embed
 			title={title}
@@ -30,7 +27,6 @@ export function EmbedError({title = "error", description}: any) {
 }
 
 export function EmbedDefaultError() {
-  Sentry.captureMessage("Something went wrong");
 	return (
 		<Embed
 			title="Error"
