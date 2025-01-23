@@ -29,14 +29,14 @@ export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavali
    * Queue/Track Events
    */
   lavalink.on("trackStart", (player, track) => {
-    logger.info(player.guildId, " :: Started Playing :: ", track.info.title, "QUEUE:", player.queue.tracks.map(v => v.info.title));
     const channel = client.channels.cache.get(player.textChannelId!) as TextChannel;
-    const url = track.info.artworkUrl || track.pluginInfo?.artworkUrl as string
+    if (!track) return;
+    const url = track.info.artworkUrl || track.pluginInfo?.artworkUrl as string;
     if(!channel) return;
     reacord.createChannelMessage(channel.id).render(<EmbedMessage 
       title={`${track.info.title}`.substring(0, 256)} 
       url={track.info.uri}
-      thumbnail={{url} || undefined}
+      thumbnail={{ url }}
       description={[
         `> - **Author:** ${track.info.author}`,
         `> - **Duration:** ${formatMS_HHMMSS(track.info.duration)} | Ends <t:${Math.floor((Date.now() + track.info.duration) / 1000)}:R>`,
@@ -48,13 +48,17 @@ export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavali
 
 
   }).on("trackEnd", (player, track, payload) => {
+    if (!track) return;
     logger.info(player.guildId, " :: Finished Playing :: ", track.info.title)
   }).on("trackError", (player, track, payload) => {
+    if (!track) return;
     logger.error(player.guildId, " :: Errored while Playing :: ", track.info.title, " :: ERROR DATA :: ", payload)
   }).on("trackStuck", (player, track, payload) => {
+    if (!track) return;
     logger.warn(player.guildId, " :: Got Stuck while Playing :: ", track.info.title, " :: STUCKED DATA :: ", payload)
       
   }).on("queueEnd", (player, track, payload) => {
+    if (!track) return;
     logger.info(player.guildId, " :: No more tracks in the queue, after playing :: ", track.info.title)
     const channel = client.channels.cache.get(player.textChannelId!) as TextChannel;
     if(!channel) return;

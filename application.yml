@@ -64,8 +64,6 @@ plugins:
       audioFormat: "mp3" # supported formats are: mp3, ogg_opus, ogg_vorbis, aac, wav, and flac. Default format is mp3
 lavalink:
   plugins:
-    - dependency: "me.rohank05:lavalink-filter-plugin:0.0.4"
-      repository: "https://jitpack.io"
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.3.0"
     - dependency: "com.github.topi314.lavasearch:lavasearch-plugin:1.0.0"
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.11.3"
