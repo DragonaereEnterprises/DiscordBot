@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "pm2 start --name Lavalink java -- -jar Lavalink.jar",
-    "start": "screen -dmS DragonaereDiscordBot bash -c 'node build/index.js | pino-pretty -i pid,hostname'",
-    "start-dev": "node build/index.js | pino-pretty -i pid,hostname",
+    "start": "node build/index.js | pino-pretty -i pid,hostname",
     "build": "tsc",
     "stop-lavalink": "pm2 kill",
     "dev": "tsx watch index.ts"
