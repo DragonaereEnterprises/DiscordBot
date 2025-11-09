@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "pm2 start --name Lavalink java -- -jar Lavalink.jar",
+    "lavalink": "pm2 start --name Lavalink java -- -jar Lavalink.jar",
     "start": "node build/index.js | pino-pretty -i pid,hostname",
     "build": "tsc",
     "stop-lavalink": "pm2 kill",
