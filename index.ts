@@ -34,7 +34,7 @@ const client = new Client({
 const lavalink = new LavalinkManager({
   nodes: [
     {
-      host: "localhost",
+      host: "10.0.0.107",
       port: 2333,
       authorization: "youshallnotpass"
     }
