@@ -34,9 +34,9 @@ const client = new Client({
 const lavalink = new LavalinkManager({
   nodes: [
     {
-      host: "10.0.0.107",
-      port: 2333,
-      authorization: "youshallnotpass"
+      host: process.env.LAVALINK_HOST as string || "localhost",
+      port: process.env.LAVALINK_PORT ? parseInt(process.env.LAVALINK_PORT) : 2333,
+      authorization: process.env.LAVALINK_PASSWORD as string,
     }
   ],
   sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
