@@ -26,6 +26,6 @@ export const Help: Command = {
   name: 'help',
   description: 'Stop it. Get some help.',
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
-    reacord.createInteractionReply(interaction).render(<HelpEmbed />)
+    reacord.createInteractionReply(interaction, { flags: "Ephemeral" }).render(<HelpEmbed />)
   },
 };
