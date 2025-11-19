@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
+import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
 import { Command } from "../../types";
 import { EQList, LavalinkManager, LavalinkPlugins, SearchResult } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord";
@@ -32,6 +32,7 @@ export const Filters: Command = {
     },
   ],
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+    const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
@@ -45,7 +46,7 @@ export const Filters: Command = {
     if(!player.queue.current) return reacord.createInteractionReply(interaction, { ephemeral: true}).render(<EmbedMessage description="I'm not playing anything" /> );
 
     let string = "";
-    switch((interaction.options as CommandInteractionOptionResolver).getString("filter")) {
+    switch(chatInputInteraction.options.getString("filter")) {
       case "clear": await player.filterManager.resetFilters(); string = "Disabled all Filter-Effects"; break;
       case "lowpass": await player.filterManager.toggleLowPass(); string = player.filterManager.filters.lowPass ? "Applied Lowpass Filter-Effect" : "Disabled Lowpass Filter-Effect"; break;
       case "nightcore": await player.filterManager.toggleNightcore(); string = player.filterManager.filters.nightcore ? "Applied Nightcore Filter-Effect, ||disabled Vaporwave (if it was active)||" : "Disabled Nightcore Filter-Effect"; break;

@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember } from "discord.js";
+import { Client, CommandInteraction, ChatInputCommandInteraction, GuildMember } from "discord.js";
 import { Command } from "../../types";
 import { LavalinkManager } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord";
@@ -26,6 +26,7 @@ export const Volume: Command = {
     }
   ],
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+    const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
@@ -38,11 +39,11 @@ export const Volume: Command = {
 
     if(!player.queue.current) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I'm not playing anything" />);
 
-    const newVolume = ((interaction.options as CommandInteractionOptionResolver).getNumber("percentage") as number) * .7; // I do this because I feel the default volume is way to loud
-    const ignoreDecrementer = ((interaction.options as CommandInteractionOptionResolver).getBoolean("ignoredecrementer") as boolean) === true
+    const newVolume = (chatInputInteraction.options.getNumber("percentage") as number) * .7;
+    const ignoreDecrementer = (chatInputInteraction.options.getBoolean("ignoredecrementer") as boolean) === true
 
     await player.setVolume(newVolume, ignoreDecrementer);
 
-    reacord.reply(interaction, <EmbedMessage title={`Changed volume to: ${(interaction.options as CommandInteractionOptionResolver).getNumber("percentage") as number}`}/> );
+    reacord.createInteractionReply(interaction).render(<EmbedMessage title={`Changed volume to: ${chatInputInteraction.options.getNumber("percentage") as number}`}/> );
   },
 }

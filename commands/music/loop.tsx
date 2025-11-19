@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember } from "discord.js";
+import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember } from "discord.js";
 import { Command } from "../../types";
 import { LavalinkManager } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord";
@@ -21,6 +21,7 @@ export const Loop: Command = {
     },
   ],
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+    const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
     if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
@@ -32,7 +33,7 @@ export const Loop: Command = {
     
     if(!player.queue.current) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="I'm not playing anything" /> );
     
-    await player.setRepeatMode((interaction.options as CommandInteractionOptionResolver).getString("repeatmode") as "off" | "track" | "queue");
+    await player.setRepeatMode(chatInputInteraction.options.getString("repeatmode") as "off" | "track" | "queue");
 
     reacord.createInteractionReply(interaction).render(<EmbedMessage title={`Set repeat mode to ${player.repeatMode}`} />);
     }

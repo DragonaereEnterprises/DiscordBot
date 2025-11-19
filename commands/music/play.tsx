@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
+import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
 import { Command } from "../../types";
 import { LavalinkManager, SearchResult } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord";
@@ -20,6 +20,7 @@ export const Play: Command = {
     },
   ],
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+    const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
     
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
@@ -28,7 +29,7 @@ export const Play: Command = {
     const vc = (interaction.member as GuildMember)?.voice?.channel as VoiceChannel;
     if(!vc.joinable || !vc.speakable) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="I am not allowed to speak in this channel" />);
     
-    const query = (interaction.options as CommandInteractionOptionResolver).getString("query") as string;
+    const query = (chatInputInteraction.options as CommandInteractionOptionResolver).getString("query") as string;
     
     if(query === "nothing_found") return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="No tracks found" />);
     if(query === "join_vc") return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join the voice chat but failed to play. Please try again" />);

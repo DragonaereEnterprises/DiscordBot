@@ -6,7 +6,6 @@ import { EmbedMessage } from "../components/Embed";
 import React from "react";
 import { LavalinkManager } from "lavalink-client/dist/index";
 import logger from '../logger';
-import { log } from "console";
 
 export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavalink: LavalinkManager) {
     /**

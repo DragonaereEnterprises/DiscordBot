@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
+import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
 import { Command } from "../../types";
 import { EQList, LavalinkManager, SearchResult } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord";
@@ -30,6 +30,7 @@ export const Equalizer: Command = {
     },
   ],
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+    const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
     if(!vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="Join a voice chat" />);
@@ -42,7 +43,7 @@ export const Equalizer: Command = {
     if(!player.queue.current) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="I'm not playing anything" /> );
 
     let string = "";
-    switch((interaction.options as CommandInteractionOptionResolver).getString("equalizer")) {
+    switch(chatInputInteraction.options.getString("equalizer")) {
       case "clear": await player.filterManager.clearEQ(); string = "Cleared all Equalizers"; break;
       case "bass_high": await player.filterManager.setEQ(EQList.BassboostHigh); string = "Applied the 'High Bassboost' Equalizer"; break;
       case "bass_medium": await player.filterManager.setEQ(EQList.BassboostMedium); string = "Applied the 'Medium Bassboost' Equalizer"; break;

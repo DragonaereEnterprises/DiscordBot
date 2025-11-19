@@ -14,7 +14,7 @@ export const CheckNSFW: Command = {
     const nsfwLevel = interaction.guild?.nsfwLevel;
     const nsfwLevelName = ["Default", "Explicit", "Safe", "Age Restricted"];
     if (nsfwLevel === undefined)
-      return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedDefaultError />);
-    reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedMessage title="NSFW Level" description={nsfwLevelName[nsfwLevel]} />);
+      return reacord.createInteractionReply(interaction, { flags: "Ephemeral" }).render(<EmbedDefaultError />);
+    reacord.createInteractionReply(interaction, { flags: "Ephemeral" }).render(<EmbedMessage title="NSFW Level" description={nsfwLevelName[nsfwLevel]} />);
   },
 };

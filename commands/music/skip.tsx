@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
+import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
 import { Command } from "../../types";
 import { LavalinkManager, SearchResult } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord";
@@ -20,6 +20,7 @@ export const Skip: Command = {
     },
   ],
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+    const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;
@@ -37,7 +38,7 @@ export const Skip: Command = {
     
     if(!nextTrack) return reacord.createInteractionReply(interaction).render(<EmbedMessage description="No Tracks to skip to" />);
 
-    await player.skip((interaction.options as CommandInteractionOptionResolver).getInteger("skipto") || 0);
+    await player.skip(chatInputInteraction.options.getInteger("skipto") || 0);
 
     reacord.createInteractionReply(interaction).render(<EmbedMessage description={current ? 
         `Skipped [\`${current?.info.title}\`](<${current?.info.uri}>) -> [\`${nextTrack?.info.title}\`](<${nextTrack?.info.uri}>)` :

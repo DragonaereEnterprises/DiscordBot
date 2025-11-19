@@ -15,7 +15,7 @@ export const ShutDown: Command = {
   name: 'shutdown',
   description: 'Shuts the bot down',
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
-    reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedMessage title="Shutting Down" description="Have a good day" />);
+    reacord.createInteractionReply(interaction, { flags: "Ephemeral" }).render(<EmbedMessage title="Shutting Down" description="Have a good day" />);
     setTimeout(turnBotOff,1000);
   },
 };

@@ -2,8 +2,8 @@ import { Client, GatewayIntentBits, Options  } from 'discord.js';
 import { LavalinkManager } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord"
 
-import dotenv from 'dotenv';
-dotenv.config();
+import { loadEnvFile } from 'node:process';
+loadEnvFile();
 
 import ready from "./events/ready";
 import interactionCreate from "./events/interactionCreate";
