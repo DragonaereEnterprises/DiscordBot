@@ -7,8 +7,8 @@ export const DisplayName: Command = {
   adminOnly: false,
   ownerOnly: false,
   category: 5,
-  name: 'help',
-  description: 'Stop it. Get some help.',
+  name: 'displayname',
+  description: 'Test.',
   run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
     reacord.createInteractionReply(interaction).render(interaction.user.displayName)
   },
