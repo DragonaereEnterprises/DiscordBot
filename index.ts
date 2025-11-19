@@ -3,7 +3,7 @@ import { LavalinkManager } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord"
 
 import { loadEnvFile } from 'node:process';
-loadEnvFile('./artifacts/.env');
+loadEnvFile('.env');
 
 import ready from "./events/ready";
 import interactionCreate from "./events/interactionCreate";
