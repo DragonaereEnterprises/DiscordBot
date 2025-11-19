@@ -4,7 +4,7 @@ import logger from '../logger';
 import { LavalinkManager } from "lavalink-client/dist/index";
 
 export default (client: Client, lavalink: LavalinkManager): void => {
-    client.on("ready", async () => {
+    client.on("clientReady", async () => {
 
         function sleep(ms: number | undefined) {
           return new Promise((resolve) => {
