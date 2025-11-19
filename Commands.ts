@@ -14,4 +14,6 @@ import { Skip } from "./commands/music/skip";
 import { Equalizer } from "./commands/music/equalizer";
 import { Filters } from "./commands/music/filters";
 
-export const Commands: Command[] = [DiceRoll, CoinFlip, CheckNSFW, Purge, ShutDown, EightBall, Help, Play, Stop, Volume, Loop, Skip, Equalizer, Filters];
+import { DisplayName } from "./commands/other/displayname";
+
+export const Commands: Command[] = [DiceRoll, CoinFlip, CheckNSFW, Purge, ShutDown, EightBall, Help, Play, Stop, Volume, Loop, Skip, Equalizer, Filters, DisplayName];
