@@ -4,25 +4,26 @@ import { formatMS_HHMMSS } from "../utils/Time";
 import { ReacordDiscordJs } from "reacord";
 import { EmbedMessage } from "../components/Embed";
 import React from "react";
-import { LavalinkManager } from "lavalink-client/dist/types";
+import { LavalinkManager } from "lavalink-client/dist/index";
 import logger from '../logger';
+import { log } from "console";
 
 export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavalink: LavalinkManager) {
     /**
      * PLAYER EVENTS
      */
   lavalink.on("playerCreate", (player) => {
-    logger.info(player.guildId, " :: Created a Player :: ");
+    logger.info(`Guild ${player.guildId} -- Player Created`);
   }).on("playerDestroy", (player, reason) => {
-    logger.info(player.guildId, " :: Player got Destroyed :: ");
+    logger.info(`Guild ${player.guildId} -- Player Destroyed - Reason: ${reason}`);
     const channel = client.channels.cache.get(player.textChannelId!) as TextChannel;
-    if(!channel) return logger.warn("No Channel?", player);
+    if(!channel) return logger.warn(`No Channel - ${player}`);
   }).on("playerDisconnect", (player, voiceChannelId) => {
-    logger.info(player.guildId, " :: Player disconnected the Voice Channel :: ", voiceChannelId);
+    logger.info(`Guild ${player.guildId} -- Player Disconnected from Voice Channel ${voiceChannelId}`);
   }).on("playerMove", (player, oldVoiceChannelId, newVoiceChannelId) => {
-    logger.info(player.guildId, " :: Player moved from Voice Channel :: ", oldVoiceChannelId, " :: To ::", newVoiceChannelId);
+    logger.info(`Guild ${player.guildId} -- Player moved from Voice Channel ${oldVoiceChannelId} to ${newVoiceChannelId}`);
   }).on("playerSocketClosed", (player, payload) => {
-    logger.info(player.guildId, " :: Player socket got closed from lavalink :: ", payload);
+    logger.info(`Guild ${player.guildId} -- Player Socket Closed - ${payload}`);
   })
 
   /**
@@ -49,17 +50,16 @@ export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavali
 
   }).on("trackEnd", (player, track, payload) => {
     if (!track) return;
-    logger.info(player.guildId, " :: Finished Playing :: ", track.info.title)
+    logger.info(`Guild ${player.guildId} -- Finished Playing: ${track.info.title} -- Reason: ${payload}`);
   }).on("trackError", (player, track, payload) => {
     if (!track) return;
-    logger.error(player.guildId, " :: Errored while Playing :: ", track.info.title, " :: ERROR DATA :: ", payload)
+    logger.error(`Guild ${player.guildId} -- Error while Playing: ${track.info.title} -- Error: ${payload}`);
   }).on("trackStuck", (player, track, payload) => {
     if (!track) return;
-    logger.warn(player.guildId, " :: Got Stuck while Playing :: ", track.info.title, " :: STUCKED DATA :: ", payload)
-      
+    logger.warn(`Guild ${player.guildId} -- Track Stuck while Playing: ${track.info.title} -- Stuck Data: ${payload}`);
   }).on("queueEnd", (player, track, payload) => {
     if (!track) return;
-    logger.info(player.guildId, " :: No more tracks in the queue, after playing :: ", track.info.title)
+    logger.info(`Guild ${player.guildId} -- Queue Ended`);
     const channel = client.channels.cache.get(player.textChannelId!) as TextChannel;
     if(!channel) return;
     reacord.createChannelMessage(channel.id).render(<EmbedMessage title="Queue Ended" />)

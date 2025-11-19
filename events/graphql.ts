@@ -1,11 +1,11 @@
 import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
+import { expressMiddleware } from '@as-integrations/express5';
 import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express from 'express';
 import http from 'http';
 import { Client } from 'discord.js';
-import { LavalinkManager } from 'lavalink-client/dist/types';
+import { LavalinkManager } from 'lavalink-client/dist/index';
 import logger from '../logger';
 import cors from 'cors';
 

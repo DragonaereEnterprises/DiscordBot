@@ -1,5 +1,5 @@
 import { CommandInteraction, ChatInputApplicationCommandData, Client, ApplicationCommandOptionData } from "discord.js";
-import { LavalinkManager, MiniMap } from "lavalink-client/dist/types";
+import { LavalinkManager, MiniMap } from "lavalink-client/dist/index";
 import { ReacordDiscordJs } from "reacord";
 // import { RedisClientType } from "redis";
 

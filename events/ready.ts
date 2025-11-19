@@ -1,7 +1,7 @@
 import { Client } from "discord.js";
 import { Commands } from "../Commands";
 import logger from '../logger';
-import { LavalinkManager } from "lavalink-client/dist/types";
+import { LavalinkManager } from "lavalink-client/dist/index";
 
 export default (client: Client, lavalink: LavalinkManager): void => {
     client.on("ready", async () => {

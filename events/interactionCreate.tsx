@@ -4,7 +4,7 @@ import { ReacordDiscordJs } from "reacord";
 import { EmbedError } from "../components/Embed";
 import React from "react";
 import dotenv from 'dotenv';
-import { LavalinkManager } from "lavalink-client/dist/types";
+import { LavalinkManager } from "lavalink-client/dist/index";
 import { Command } from "../types";
 dotenv.config();
 
