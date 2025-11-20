@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "AGPL-3.0-only",
   "dependencies": {
     "@andrewdragon/utils": "^1.0.0",
     "@apollo/server": "^5.1.0",
@@ -39,7 +39,6 @@
     "tsup": "^8.5.1",
     "tsx": "^4.20.6"
   },
-  "private": true,
   "peerDependencies": {
     "typescript": "^5"
   }
