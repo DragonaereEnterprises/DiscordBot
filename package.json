@@ -10,7 +10,7 @@
     "dev": "bun --watch index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Andrew Still",
   "license": "AGPL-3.0-only",
   "dependencies": {
     "@andrewdragon/utils": "^1.0.0",
