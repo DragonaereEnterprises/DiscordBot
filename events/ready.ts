@@ -27,7 +27,7 @@ export default (client: Client, lavalink: LavalinkManager): void => {
         const userCount = Number.parseFloat(String(client.guilds.cache.reduce((a, g) => a + g.memberCount, 0))).toLocaleString("en-US");
     
         const statuses = [
-          { "name": `${serverCount} servers & ${userCount} users and ${channelCount} channels`, "type": 3 },
+          { "name": `${serverCount} servers, ${userCount} users and ${channelCount} channels`, "type": 3 },
           { "name": "\/play", "type": 2 },
           { "name": "\/help", "type": 0 }
         ];
