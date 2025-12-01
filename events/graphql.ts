@@ -70,7 +70,7 @@ export default async (client: Client, lavalink: LavalinkManager): Promise<void> 
 
   app.use(
     '/',
-    cors<cors.CorsRequest>({ origin: ['https://discordbotapi.dragonaere.com','https://bot.dragonaere.com/', 'https://studio.apollographql.com'] }),
+    cors<cors.CorsRequest>({ origin: ['https://discordbotapi.dragonaere.com','https://bot.dragonaere.com/'] }),
     express.json(),
     expressMiddleware(server),
   );
