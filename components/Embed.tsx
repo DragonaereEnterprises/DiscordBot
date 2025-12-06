@@ -15,7 +15,7 @@ export function EmbedMessage({title, description, url, thumbnail, footer}: {titl
 	)
 }
 
-export function EmbedError({title = "error", description}: any) {
+export function EmbedError({title = "Error", description}: any) {
 	return (
 		<Embed
 			title={title}

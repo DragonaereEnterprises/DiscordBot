@@ -8,10 +8,13 @@ import { EightBall } from "./commands/fun/8ball";
 import { Help } from "./commands/other/help";
 import { Play } from "./commands/music/play";
 import { Stop } from "./commands/music/stop";
+import { Seek } from "./commands/music/seek";
+import { Pause } from "./commands/music/pause";
+import { Resume } from "./commands/music/resume";
 import { Volume } from "./commands/music/volume";
 import { Loop } from "./commands/music/loop";
 import { Skip } from "./commands/music/skip";
 import { Equalizer } from "./commands/music/equalizer";
 import { Filters } from "./commands/music/filters";
 
-export const Commands: Command[] = [DiceRoll, CoinFlip, CheckNSFW, Purge, ShutDown, EightBall, Help, Play, Stop, Volume, Loop, Skip, Equalizer, Filters];
+export const Commands: Command[] = [DiceRoll, CoinFlip, CheckNSFW, Purge, ShutDown, EightBall, Help, Play, Stop, Volume, Loop, Skip, Equalizer, Filters, Seek, Pause, Resume];
