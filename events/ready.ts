@@ -23,11 +23,11 @@ export default (client: Client, lavalink: LavalinkManager): void => {
         logger.info(`${client.user.username} is online`);
 
         const serverCount = Number.parseFloat(String(client.guilds.cache.size)).toLocaleString("en-US");
-        const channelCount = Number.parseFloat(String(client.channels.cache.size)).toLocaleString("en-US");
         const userCount = Number.parseFloat(String(client.guilds.cache.reduce((a, g) => a + g.memberCount, 0))).toLocaleString("en-US");
+        const channelCount = Number.parseFloat(String(client.channels.cache.size)).toLocaleString("en-US");
     
         const statuses = [
-          { "name": `${Number.parseFloat(String(client.guilds.cache.size)).toLocaleString("en-US")} servers, ${Number.parseFloat(String(client.channels.cache.size)).toLocaleString("en-US")} users and ${Number.parseFloat(String(client.guilds.cache.reduce((a, g) => a + g.memberCount, 0))).toLocaleString("en-US")} channels`, "type": 3 },
+          { "name": `${serverCount} servers, ${userCount} users and ${channelCount} channels`, "type": 3 },
           { "name": "\/play", "type": 2 },
           { "name": "\/help", "type": 0 }
         ];
