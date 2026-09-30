@@ -10,11 +10,14 @@
     "esModuleInterop": true,
     "inlineSources": true,
     "strictNullChecks": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowUmdGlobalAccess": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "sourceRoot": "/"
+    "sourceRoot": "/",
+    "paths": {
+      "@/*": ["./*"]
+    }
   }
 }

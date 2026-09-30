@@ -1,7 +1,7 @@
-import { Client } from "discord.js";
+import type { Client } from "discord.js";
 import { Commands } from "../Commands";
 import logger from '../logger';
-import { LavalinkManager } from "lavalink-client/dist/index";
+import type { LavalinkManager } from "lavalink-client";
 
 export default (client: Client, lavalink: LavalinkManager): void => {
     client.on("clientReady", async () => {
@@ -28,8 +28,8 @@ export default (client: Client, lavalink: LavalinkManager): void => {
     
         const statuses = [
           { "name": `${serverCount} servers, ${userCount} users and ${channelCount} channels`, "type": 3 },
-          { "name": "\/play", "type": 2 },
-          { "name": "\/help", "type": 0 }
+          { "name": "/play", "type": 2 },
+          { "name": "/help", "type": 0 }
         ];
     
         setInterval(() => {
@@ -37,6 +37,6 @@ export default (client: Client, lavalink: LavalinkManager): void => {
           client.user?.setActivity(status.name, { type: status.type });
         }, 60000);
 
-        await lavalink.init({ ...client.user! });
+        await lavalink.init({ id: client.user.id, username: client.user.username});
     });
 };

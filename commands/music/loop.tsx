@@ -1,9 +1,8 @@
-import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember } from "discord.js";
-import { Command } from "../../types";
-import { LavalinkManager } from "lavalink-client";
-import { ReacordDiscordJs } from "reacord";
+import type { ChatInputCommandInteraction, Client, CommandInteraction, GuildMember } from "discord.js";
+import type { Command } from "../../types";
+import type { LavalinkManager } from "lavalink-client";
+import type { ReacordDiscordJs } from "reacord";
 import { EmbedError, EmbedMessage } from "../../components/Embed";
-import React from "react";
 
 export const Loop: Command = {
   adminOnly: false,
@@ -20,7 +19,7 @@ export const Loop: Command = {
       choices: [{ name: "Off", value: "off"}, { name: "Track", value: "track"}, { name: "Queue", value: "queue"}]
     },
   ],
-  run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+  run: async (_client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;

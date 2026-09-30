@@ -1,9 +1,8 @@
-import { CommandInteraction, Client, GuildMember } from "discord.js";
-import { Command } from "../../types";
-import { ReacordDiscordJs } from "reacord";
-import { LavalinkManager } from "lavalink-client";
+import type { CommandInteraction, Client, GuildMember } from "discord.js";
+import type { Command } from "../../types";
+import type { ReacordDiscordJs } from "reacord";
+import type { LavalinkManager } from "lavalink-client";
 import { EmbedError, EmbedMessage } from "../../components/Embed";
-import React from "react";
 
 export const Stop: Command = {
   adminOnly: false,
@@ -11,7 +10,7 @@ export const Stop: Command = {
   category: 6,
   name: 'stop',
   description: 'Stops the Music',
-  run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+  run: async (_client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     if(!interaction.guildId) return;
 
     const vcId = (interaction.member as GuildMember)?.voice?.channelId;

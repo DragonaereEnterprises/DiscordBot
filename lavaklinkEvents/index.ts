@@ -1,8 +1,8 @@
-import { BotClient } from "../types";
+import type { BotClient } from "../types";
 import { NodesEvents } from "./Nodes";
 import { PlayerEvents } from "./Player";
-import { ReacordDiscordJs } from "reacord";
-import { LavalinkManager } from "lavalink-client/dist/index";
+import type { ReacordDiscordJs } from "reacord";
+import type { LavalinkManager } from "lavalink-client/dist/index";
 
 export function loadLavalinkEvents(client:BotClient, reacord: ReacordDiscordJs, lavalink: LavalinkManager) {
     NodesEvents(client, lavalink);

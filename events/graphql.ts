@@ -3,9 +3,9 @@ import { expressMiddleware } from '@as-integrations/express5';
 import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express from 'express';
-import http from 'http';
-import { Client } from 'discord.js';
-import { LavalinkManager } from 'lavalink-client/dist/index';
+import http from 'node:http';
+import type { Client } from 'discord.js';
+import type { LavalinkManager } from 'lavalink-client';
 import logger from '../logger';
 import cors from 'cors';
 
@@ -15,7 +15,7 @@ function sleep(ms: number | undefined) {
   });
 }
 
-export default async (client: Client, lavalink: LavalinkManager): Promise<void> => {
+export default async (client: Client, _lavalink: LavalinkManager): Promise<void> => {
   const app = express();
   const httpServer = http.createServer(app);
   

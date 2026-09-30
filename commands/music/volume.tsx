@@ -1,9 +1,8 @@
-import { Client, CommandInteraction, ChatInputCommandInteraction, GuildMember } from "discord.js";
-import { Command } from "../../types";
-import { LavalinkManager } from "lavalink-client";
-import { ReacordDiscordJs } from "reacord";
+import type { Client, CommandInteraction, ChatInputCommandInteraction, GuildMember } from "discord.js";
+import type { Command } from "../../types";
+import type { LavalinkManager } from "lavalink-client";
+import type { ReacordDiscordJs } from "reacord";
 import { EmbedError, EmbedMessage } from "../../components/Embed";
-import React from "react";
 
 export const Volume: Command = {
   adminOnly: false,
@@ -25,7 +24,7 @@ export const Volume: Command = {
       type: 5,
     }
   ],
-  run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+  run: async (_client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
 

@@ -1,9 +1,8 @@
-import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
-import { Command } from "../../types";
-import { LavalinkManager, SearchResult } from "lavalink-client";
-import { ReacordDiscordJs } from "reacord";
+import type { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
+import type { Command } from "../../types";
+import type { LavalinkManager, SearchResult } from "lavalink-client";
+import type { ReacordDiscordJs } from "reacord";
 import { EmbedError, EmbedMessage } from "../../components/Embed";
-import React from "react";
 
 export const Play: Command = {
   adminOnly: false,
@@ -19,7 +18,7 @@ export const Play: Command = {
       type: 3,
     },
   ],
-  run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+  run: async (_client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
     
@@ -51,7 +50,7 @@ export const Play: Command = {
     if(player.voiceChannelId !== vcId) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="We need to be in the same voice chat" />);
     
     const response = (await player.search({ query: query }, interaction.user)) as SearchResult;
-    if(!response || !response.tracks?.length) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="No tracks found" />);
+    if(!response?.tracks?.length) return reacord.createInteractionReply(interaction, { ephemeral: true }).render(<EmbedError description="No tracks found" />);
 
     await player.queue.add(response.loadType === "playlist" ? response.tracks : response.tracks[0]);
 

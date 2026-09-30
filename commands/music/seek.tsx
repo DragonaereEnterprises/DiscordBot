@@ -1,9 +1,8 @@
-import { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
-import { Command } from "../../types";
-import { LavalinkManager } from "lavalink-client";
-import { ReacordDiscordJs } from "reacord";
+import type { ChatInputCommandInteraction, Client, CommandInteraction, GuildMember } from "discord.js";
+import type { Command } from "../../types";
+import type { LavalinkManager } from "lavalink-client";
+import type { ReacordDiscordJs } from "reacord";
 import { EmbedError, EmbedMessage } from "../../components/Embed";
-import React from "react";
 import { formatMS_HHMMSS } from "../../utils/Time";
 
 export const Seek: Command = {
@@ -20,7 +19,7 @@ export const Seek: Command = {
       type: 4,
     },
   ],
-  run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
+  run: async (_client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs, lavalink: LavalinkManager) => {
     const chatInputInteraction = interaction as ChatInputCommandInteraction;
     if(!interaction.guildId) return;
 

@@ -1,8 +1,7 @@
-import { CommandInteraction, Client, TextChannel } from "discord.js";
-import { Command } from "../../types";
-import { ReacordDiscordJs } from "reacord";
+import type { CommandInteraction, Client, TextChannel } from "discord.js";
+import type { Command } from "../../types";
+import type { ReacordDiscordJs } from "reacord";
 import { EmbedMessage, EmbedError, EmbedDefaultError } from "../../components/Embed";
-import React from "react";
 import ms from "ms";
 
 export const Purge: Command = {
@@ -20,7 +19,7 @@ export const Purge: Command = {
 
     },
   ],
-  run: async (client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
+  run: async (_client: Client, interaction: CommandInteraction, reacord: ReacordDiscordJs) => {
     const channel = interaction.channel as TextChannel;
     if (!channel.isDMBased) return
     if (!interaction.isChatInputCommand()) return

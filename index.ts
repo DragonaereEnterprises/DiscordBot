@@ -4,7 +4,7 @@ import { ReacordDiscordJs } from "reacord"
 
 import ready from "./events/ready";
 import interactionCreate from "./events/interactionCreate";
-import { BotClient } from './types';
+import type { BotClient } from './types';
 import { loadLavalinkEvents } from './lavaklinkEvents';
 import graphql from './events/graphql';
 
@@ -32,7 +32,7 @@ const lavalink = new LavalinkManager({
   nodes: [
     {
       host: process.env.LAVALINK_HOST as string || "localhost",
-      port: process.env.LAVALINK_PORT ? parseInt(process.env.LAVALINK_PORT) : 2333,
+      port: process.env.LAVALINK_PORT ? parseInt(process.env.LAVALINK_PORT, 10) : 2333,
       authorization: process.env.LAVALINK_PASSWORD as string,
     }
   ],

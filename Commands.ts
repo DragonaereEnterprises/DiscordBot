@@ -1,4 +1,4 @@
-import { Command } from "./types";
+import type { Command } from "./types";
 import { DiceRoll } from "./commands/fun/diceroll";
 import { CoinFlip } from "./commands/fun/coinflip";
 import { CheckNSFW } from "./commands/admin/checknsfw";
