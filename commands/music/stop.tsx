@@ -1,8 +1,8 @@
 import type { CommandInteraction, Client, GuildMember } from "discord.js";
-import type { Command } from "../../types";
+import type { Command } from "../../types.ts";
 import type { ReacordDiscordJs } from "reacord";
 import type { LavalinkManager } from "lavalink-client";
-import { EmbedError, EmbedMessage } from "../../components/Embed";
+import { EmbedError, EmbedMessage } from "../../components/Embed.tsx";
 
 export const Stop: Command = {
   adminOnly: false,

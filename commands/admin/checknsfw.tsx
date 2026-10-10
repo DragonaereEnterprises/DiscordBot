@@ -1,7 +1,7 @@
 import type { CommandInteraction, Client } from "discord.js";
-import type { Command } from "../../types";
+import type { Command } from "../../types.ts";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedDefaultError, EmbedMessage } from "../../components/Embed";
+import { EmbedDefaultError, EmbedMessage } from "../../components/Embed.tsx";
 
 export const CheckNSFW: Command = {
   adminOnly: true,

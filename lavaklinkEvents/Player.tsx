@@ -1,10 +1,10 @@
 import type { TextChannel } from "discord.js";
-import type { BotClient, CustomRequester } from "../types";
-import { formatMS_HHMMSS } from "../utils/Time";
+import type { BotClient, CustomRequester } from "../types.ts";
+import { formatMS_HHMMSS } from "../utils/Time.ts";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedMessage } from "../components/Embed";
+import { EmbedMessage } from "../components/Embed.tsx";
 import type { LavalinkManager } from "lavalink-client";
-import logger from '../logger';
+import logger from '../logger.ts';
 
 export function PlayerEvents(client:BotClient, reacord: ReacordDiscordJs, lavalink: LavalinkManager) {
     /**

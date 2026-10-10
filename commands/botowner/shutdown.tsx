@@ -1,7 +1,7 @@
 import type { CommandInteraction, Client } from "discord.js";
-import type { Command } from "../../types";
+import type { Command } from "../../types.ts";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedMessage } from "../../components/Embed";
+import { EmbedMessage } from "../../components/Embed.tsx";
 
 function turnBotOff(){
   process.exit(100);
