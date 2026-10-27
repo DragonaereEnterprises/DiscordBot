@@ -6,7 +6,7 @@ import express from 'express';
 import http from 'node:http';
 import type { Client } from 'discord.js';
 import type { LavalinkManager } from 'lavalink-client';
-import logger from '../logger.ts';
+import logger from '../logger';
 import cors from 'cors';
 
 function sleep(ms: number | undefined) {

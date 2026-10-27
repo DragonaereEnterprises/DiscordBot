@@ -2,11 +2,11 @@ import { Client, GatewayIntentBits, Options  } from 'discord.js';
 import { LavalinkManager } from "lavalink-client";
 import { ReacordDiscordJs } from "reacord"
 
-import ready from "./events/ready.ts";
-import interactionCreate from "./events/interactionCreate.tsx";
-import type { BotClient } from './types.ts';
-import { loadLavalinkEvents } from './lavaklinkEvents/index.ts';
-import graphql from './events/graphql.ts';
+import ready from "./events/ready";
+import interactionCreate from "./events/interactionCreate";
+import type { BotClient } from './types';
+import { loadLavalinkEvents } from './lavaklinkEvents';
+import graphql from './events/graphql';
 
 const client = new Client({
   intents: [

@@ -1,7 +1,7 @@
 import type { CommandInteraction, Client } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedMessage } from "../../components/Embed.tsx";
+import { EmbedMessage } from "../../components/Embed";
 
 export const CoinFlip: Command = {
   adminOnly: false,

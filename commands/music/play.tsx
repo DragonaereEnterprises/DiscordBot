@@ -1,8 +1,8 @@
 import type { ChatInputCommandInteraction, Client, CommandInteraction, CommandInteractionOptionResolver, GuildMember, VoiceChannel } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import type { LavalinkManager, SearchResult } from "lavalink-client";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedError, EmbedMessage } from "../../components/Embed.tsx";
+import { EmbedError, EmbedMessage } from "../../components/Embed";
 
 export const Play: Command = {
   adminOnly: false,

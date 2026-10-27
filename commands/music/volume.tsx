@@ -1,8 +1,8 @@
 import type { Client, CommandInteraction, ChatInputCommandInteraction, GuildMember } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import type { LavalinkManager } from "lavalink-client";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedError, EmbedMessage } from "../../components/Embed.tsx";
+import { EmbedError, EmbedMessage } from "../../components/Embed";
 
 export const Volume: Command = {
   adminOnly: false,

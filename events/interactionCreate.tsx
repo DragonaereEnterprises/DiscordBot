@@ -1,9 +1,9 @@
 import { type CommandInteraction, type Client, type Interaction, PermissionsBitField, type GuildMember } from "discord.js";
-import { Commands } from "../Commands.ts"
+import { Commands } from "../Commands"
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedError } from "../components/Embed.tsx";
+import { EmbedError } from "../components/Embed";
 import type { LavalinkManager } from "lavalink-client";
-import type { Command } from "../types.ts";
+import type { Command } from "../types";
 
 export default (client: Client, reacord: ReacordDiscordJs, lavalink: LavalinkManager): void => {
 	client.on("interactionCreate", async (interaction: Interaction) => {

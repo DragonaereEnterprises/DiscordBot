@@ -1,7 +1,7 @@
 import type { CommandInteraction, Client, TextChannel } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedMessage, EmbedError, EmbedDefaultError } from "../../components/Embed.tsx";
+import { EmbedMessage, EmbedError, EmbedDefaultError } from "../../components/Embed";
 import ms from "ms";
 
 export const Purge: Command = {

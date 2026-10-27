@@ -1,7 +1,7 @@
 import type { CommandInteraction, Client, ChatInputCommandInteraction } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedMessage } from "../../components/Embed.tsx";
+import { EmbedMessage } from "../../components/Embed";
 
 import { randomNumber } from "@andrewdragon/utils";
 

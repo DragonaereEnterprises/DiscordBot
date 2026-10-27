@@ -1,5 +1,5 @@
 import type { CommandInteraction, Client } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import { type ReacordDiscordJs, Embed } from "reacord";
 
 function HelpEmbed(){

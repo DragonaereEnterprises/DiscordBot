@@ -1,6 +1,6 @@
 import type { Client } from "discord.js";
-import { Commands } from "../Commands.ts";
-import logger from '../logger.ts';
+import { Commands } from "../Commands";
+import logger from '../logger';
 import type { LavalinkManager } from "lavalink-client";
 
 export default (client: Client, lavalink: LavalinkManager): void => {

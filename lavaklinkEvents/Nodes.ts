@@ -1,6 +1,6 @@
 import type { LavalinkManager } from "lavalink-client";
-import type { BotClient } from "../types.ts";
-import logger from '../logger.ts';
+import type { BotClient } from "../types";
+import logger from '../logger';
 
 export function NodesEvents(_client:BotClient, lavalink: LavalinkManager) {
   lavalink.nodeManager.on("error", (node, error, payload) => {

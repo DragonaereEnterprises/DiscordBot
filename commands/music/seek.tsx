@@ -1,9 +1,9 @@
 import type { ChatInputCommandInteraction, Client, CommandInteraction, GuildMember } from "discord.js";
-import type { Command } from "../../types.ts";
+import type { Command } from "../../types";
 import type { LavalinkManager } from "lavalink-client";
 import type { ReacordDiscordJs } from "reacord";
-import { EmbedError, EmbedMessage } from "../../components/Embed.tsx";
-import { formatMS_HHMMSS } from "../../utils/Time.ts";
+import { EmbedError, EmbedMessage } from "../../components/Embed";
+import { formatMS_HHMMSS } from "../../utils/Time";
 
 export const Seek: Command = {
   adminOnly: false,
