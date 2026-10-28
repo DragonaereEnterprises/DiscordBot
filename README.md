@@ -1,3 +1,6 @@
-# Bot
+# Migrated to Forgejo
 
-The bot
+This repo has been moved to [my self-hosted Forgejo instance](https://git.andrewstill.cloud/Dragonaere/DiscordBot).\
+Development will continue there.
+
+Thanks!
